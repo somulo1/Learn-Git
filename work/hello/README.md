@@ -4,10 +4,6 @@
 
 <Write the command here>
 
-``` shell 
-git  merger Greet/master
-```
-
 # Switch to main branch and make changes to hello.sh file
 
 <Write the command here>
