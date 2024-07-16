@@ -1,1 +1,3 @@
-echo hello, world
+#!/bin/bash
+
+echo "Hello, $1"
