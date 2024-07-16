@@ -1,3 +1,5 @@
 #!/bin/bash
 
-echo "Hello, $1"
+# Default is "World"
+name=${1:-"World"}
+echo "Hello, $name"
