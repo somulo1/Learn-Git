@@ -1,37 +1,43 @@
-# Branching, Merging, and Rebasing in Git
+# Conflicts, merging and rebasing
 
-This document explains essential Git concepts for managing code changes: branching, merging, and rebasing. It includes clear commands for common scenarios and helps you decide when to use each approach.
+## Merge Main into Greet Branch
+a. Switch to Greet Branch:
 
-## Understanding Branching:
+```Bash
+git checkout Greet
 
-    A branch is a separate line of development in your Git repository.
-    It allows you to work on changes without affecting the main codebase (master branch by default).
+```
+b. Pull Latest Changes :
 
-* Merging vs. Rebasing:
+``` bash
+git pull origin main
+```
+c. and lastly merge main into Greet
 
-    Merging: Creates a new commit that combines changes from two branches, preserving their history.
-    Rebasing: Rewrites commit history by applying one branch's changes (e.g., Greet) on top of another's (e.g., main).
+``` bash
+git merge main
+```
 
-* Choosing Between Merging and Rebasing:
-    Merging: Preferred for: 
-    
-      Collaboration: Clear history of how branches evolved.
-      Independent work: Preserves individual changes.
-        
-       
-    Rebasing:      
-        Maintaining a clean local history (before pushing).
-        Linear history (consider private repositories).
+## Switch to main branch and make changes to hello.sh file
+ a. Switch to Greet branch:
 
-Caution with Rebasing:
-`N/B`
-    Rewrites history, potentially causing issues on shared repositories (remote conflicts).
-    Use with caution in public repositories to avoid confusing history for others.
-
-## Common Scenarios and Commands:
-
-1. Merging Main into Greet Branch (Conflict):
-
+  ```bash
+  git checkout main
+ ```
+ b. switch to the lib/ directory and make changes in hello.sh
+    `N/B` you are in the parent directory :
+  ```bash
+  cd work/hello/lib/
+ ```
+ `N/B` if all the changes in this branch are not yet committed then commit and push the changes. you can even temporarily save your work when moving to another branch 
+   ```bash
+ git stash
+ ```
+ and then stash them back when you get back to this branch
+   ```bash
+git stash apply
+ ```
+## Merging Main into Greet Branch (Conflict)
 a. Switch to Greet branch:
 
   ```bash
@@ -43,6 +49,8 @@ b. Attempt merge:
   ```bash
   git merge main
   ```
+
+## Resolve the conflict (manually or using merge tools)
 2. Resolving Conflicts:
 
 a. Open hello.sh in a text editor.
@@ -61,12 +69,22 @@ d. Commit the merge:
   git commit -m "Resolved conflicts in hello.sh"
   ```
 
-3. Rebasing Greet Branch:
+## After resolving, stage the changes and commit
 
-    Rebasing rewrites history by integrating changes from one branch (Greet) onto another (main).
+c. Stage the resolved file:
 
-Note: While this creates a cleaner local history, use caution in public repositories.
+  ```bash
+  git add hello.sh
+  ```
 
+d. Commit the merge:
+
+  ```bash
+  git commit -m "Resolved conflicts in hello.sh"
+  ```
+
+
+## Rebasing Greet Branch
 a. Switch to Greet branch:
 
   ```bash
@@ -79,9 +97,8 @@ b. Rebase onto main:
   git rebase main
   ```
 
-  -`N/B` This rewrites history. Conflicts might arise during rebasing. Resolve them as explained in step 2.
 
-4. Merging Greet into Main:
+## Merging Greet into Main
 
  first Switch to main branch: and then carry out the merging process.
   
@@ -93,6 +110,5 @@ Merge Greet:
 ``` bash
 git merge Greet
  ```
-
 
 
